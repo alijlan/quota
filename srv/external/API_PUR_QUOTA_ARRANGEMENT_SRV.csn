@@ -1,0 +1,295 @@
+{
+ "meta": {
+  "creator": "cds-dk 8.4.0"
+ },
+ "$version": "2.0",
+ "definitions": {
+  "API_PUR_QUOTA_ARRANGEMENT_SRV": {
+   "kind": "service",
+   "@cds.external": true,
+   "@m.IsDefaultEntityContainer": "true",
+   "@sap.message.scope.supported": "true",
+   "@sap.supported.formats": "atom json xlsx"
+  },
+  "API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangement": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.content.version": "1",
+   "@sap.label": "Quota Arrangement",
+   "elements": {
+    "QuotaArrangement": {
+     "key": true,
+     "type": "cds.String",
+     "length": 10,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Quota arrangement",
+     "@sap.quickinfo": "Number of quota arrangement",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "Material": {
+     "type": "cds.String",
+     "length": 40,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Material",
+     "@sap.quickinfo": "Material Number"
+    },
+    "Plant": {
+     "type": "cds.String",
+     "length": 4,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Plant"
+    },
+    "ValidityEndDate": {
+     "type": "cds.Date",
+     "@sap.display.format": "Date",
+     "@sap.label": "Valid to",
+     "@sap.quickinfo": "Quota arrangement period valid until"
+    },
+    "ValidityStartDate": {
+     "type": "cds.Date",
+     "@sap.display.format": "Date",
+     "@sap.label": "Valid from",
+     "@sap.quickinfo": "Quota arrangement period valid from"
+    },
+    "CreationDate": {
+     "type": "cds.Date",
+     "@sap.display.format": "Date",
+     "@sap.label": "Created On",
+     "@sap.quickinfo": "Record Creation Date",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false"
+    },
+    "CreatedByUser": {
+     "type": "cds.String",
+     "length": 12,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Created By",
+     "@sap.quickinfo": "Name of Person Responsible for Creating the Object",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false"
+    },
+    "MinQtyForSpltQuota": {
+     "type": "cds.Decimal",
+     "precision": 15,
+     "scale": 3,
+     "@sap.unit": "MaterialBaseUnit",
+     "@sap.label": "Minimum Qty",
+     "@sap.quickinfo": "Minimum Quantity for Splitting Quota"
+    },
+    "LastChangeDateTime": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTimeOffset",
+     "@odata.Precision": 7,
+     "@sap.label": "Time Stamp",
+     "@sap.quickinfo": "UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false"
+    },
+    "UserDescription": {
+     "type": "cds.String",
+     "length": 80,
+     "@sap.label": "Description",
+     "@sap.quickinfo": "Description of the Technical User Account",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false"
+    },
+    "MaterialBaseUnit": {
+     "type": "cds.String",
+     "length": 3,
+     "@sap.label": "Base Unit of Measure",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "@sap.semantics": "unit-of-measure"
+    },
+    "to_PurgQuotaArrangementItem": {
+     "type": "cds.Association",
+     "target": "API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItem",
+     "cardinality": {
+      "max": "*"
+     },
+     "keys": []
+    }
+   }
+  },
+  "API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurgQuotaArrangementItem": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.content.version": "1",
+   "@sap.label": "Item",
+   "elements": {
+    "QuotaArrangement": {
+     "key": true,
+     "type": "cds.String",
+     "length": 10,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Quota arrangement",
+     "@sap.quickinfo": "Number of quota arrangement",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "QuotaArrangementItem": {
+     "key": true,
+     "type": "cds.String",
+     "length": 3,
+     "@sap.display.format": "NonNegative",
+     "@sap.label": "Quota arrangemt.item",
+     "@sap.quickinfo": "Quota arrangement item",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "MaterialProcurementCategory": {
+     "type": "cds.String",
+     "length": 1,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Procurement Type"
+    },
+    "MaterialProcurementType": {
+     "type": "cds.String",
+     "length": 1,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Special procurement",
+     "@sap.quickinfo": "Special procurement type"
+    },
+    "Supplier": {
+     "type": "cds.String",
+     "length": 10,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Supplier",
+     "@sap.quickinfo": "Supplier's Account Number"
+    },
+    "SupplyingPlant": {
+     "type": "cds.String",
+     "length": 4,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Procurement Plant",
+     "@sap.quickinfo": "Plant from Which Material is Procured"
+    },
+    "PurchasingSourceQuota": {
+     "type": "cds.Decimal",
+     "precision": 3,
+     "scale": 0,
+     "@sap.label": "Quota"
+    },
+    "QuotaBaseQuantity": {
+     "type": "cds.Decimal",
+     "precision": 15,
+     "scale": 3,
+     "@sap.unit": "MaterialBaseUnit",
+     "@sap.label": "Quota Base Quantity",
+     "@sap.quickinfo": "Quota Base Quantity of Quota Arrangement Item"
+    },
+    "QuotaAllocatedQuantity": {
+     "type": "cds.Decimal",
+     "precision": 15,
+     "scale": 3,
+     "@sap.unit": "MaterialBaseUnit",
+     "@sap.label": "Allocated Quantity",
+     "@sap.quickinfo": "Allocated Quantity of Quota Arrangement Item",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false"
+    },
+    "QuotaMaximumQuantity": {
+     "type": "cds.Decimal",
+     "precision": 15,
+     "scale": 3,
+     "@sap.unit": "MaterialBaseUnit",
+     "@sap.label": "Maximum quantity",
+     "@sap.quickinfo": "Maximum Quantity of Quota Arrangement Item"
+    },
+    "ProductionVersion": {
+     "type": "cds.String",
+     "length": 4,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Production Version"
+    },
+    "MaterialMaxLotSizeQuantity": {
+     "type": "cds.Decimal",
+     "precision": 13,
+     "scale": 3,
+     "@sap.unit": "MaterialBaseUnit",
+     "@sap.label": "Maximum Lot Size",
+     "@sap.quickinfo": "Maximum Lot Size per Quota Item"
+    },
+    "MaterialMinLotSizeQuantity": {
+     "type": "cds.Decimal",
+     "precision": 13,
+     "scale": 3,
+     "@sap.unit": "MaterialBaseUnit",
+     "@sap.label": "Minimum Lot Size",
+     "@sap.quickinfo": "Minimum Lot Size per Quota Item"
+    },
+    "MaterialRoundingProfile": {
+     "type": "cds.String",
+     "length": 4,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Rounding Profile"
+    },
+    "SourceOfSupplyIsAssignedOnce": {
+     "type": "cds.Boolean",
+     "@sap.label": "&quot;1x Only&quot; Ind.",
+     "@sap.quickinfo": "Indicator: &quot;Once-Only&quot;"
+    },
+    "MaximumReleaseQuantity": {
+     "type": "cds.Decimal",
+     "precision": 13,
+     "scale": 3,
+     "@sap.unit": "MaterialBaseUnit",
+     "@sap.label": "Max. Release Qty",
+     "@sap.quickinfo": "Maximum Release Quantity per Period"
+    },
+    "QuotaReleasePeriodType": {
+     "type": "cds.String",
+     "length": 1,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Per. Rel. Qty",
+     "@sap.quickinfo": "Period to Which the Release Quantity Relates"
+    },
+    "NumberOfPeriodsPerRelQuantity": {
+     "type": "cds.String",
+     "length": 2,
+     "@sap.display.format": "NonNegative",
+     "@sap.label": "Number of Periods",
+     "@sap.quickinfo": "Number of Periods to Which the Release Quantity Relates"
+    },
+    "QuotaDeterminationPriority": {
+     "type": "cds.String",
+     "length": 2,
+     "@sap.display.format": "NonNegative",
+     "@sap.label": "Priority",
+     "@sap.quickinfo": "Priority for Determination of Sequence"
+    },
+    "ManufacturerMaterial": {
+     "type": "cds.String",
+     "length": 40,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "MPN: Material",
+     "@sap.quickinfo": "Material Number Corresponding to Manufacturer Part Number"
+    },
+    "PlannedDeliveryDurationInDays": {
+     "type": "cds.Decimal",
+     "precision": 3,
+     "scale": 0,
+     "@sap.label": "Planned Deliv. Time",
+     "@sap.quickinfo": "Planned Delivery Time in Days"
+    },
+    "MaterialBaseUnit": {
+     "type": "cds.String",
+     "length": 3,
+     "@sap.label": "Base Unit of Measure",
+     "@sap.semantics": "unit-of-measure"
+    },
+    "to_PurchasingQuotaArrangement": {
+     "type": "cds.Association",
+     "target": "API_PUR_QUOTA_ARRANGEMENT_SRV.A_PurchasingQuotaArrangement",
+     "keys": []
+    }
+   }
+  }
+ }
+}
